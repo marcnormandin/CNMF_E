@@ -363,8 +363,19 @@ classdef Sources2D < handle
                 r1 = block_idx_r(m+1);
                 c0 = block_idx_c(n); %#ok<PFBNS>
                 c1 = block_idx_c(n+1);
+                
+                
                 Ypatch = get_patch_data(mat_data, [r0, r1, c0, c1], frame_range, false);
+                
+                disp(T)
+                class(T)
+                T = uint16(T);
+                
                 Ypatch = double(reshape(Ypatch, [], T));
+                
+                disp('reshape variables')
+                disp(r1-r0+1)
+                disp(c1-c0+1)
                 tmp_sn = reshape(foo(Ypatch), r1-r0+1, c1-c0+1);
                 if m~=nr_block
                     tmp_sn(end-1, :) = [];

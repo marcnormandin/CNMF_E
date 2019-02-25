@@ -387,6 +387,7 @@ else
         temp = mean(Ypatch, 3);
         Ymean{mpatch} = temp((tmp_patch(1):tmp_patch(2))-tmp_block(1)+1, (tmp_patch(3):tmp_patch(4))-tmp_block(3)+1);
         
+        T = int32(T);
         Ypatch = double(reshape(Ypatch, [], T));
         if nk>1
             Ypatch_dt = detrend_data(Ypatch, nk); % detrend data

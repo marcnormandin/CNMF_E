@@ -40,7 +40,7 @@ fprintf('\n-----------------UPDATE TEMPORAL---------------------------\n');
 
 % frames to be loaded
 frame_range = obj.frame_range;
-T = diff(frame_range) + 1;
+T = int32(diff(frame_range) + 1);
 
 % threshold for detecting large residuals
 thresh_outlier = obj.options.thresh_outlier;

@@ -254,6 +254,8 @@ else
         % get the noise level
         sn_patch = sn{mpatch};
         
+        T = int32(T);
+
         % get background
         if strcmpi(bg_model, 'ring')
             A_patch_prev = A_prev{mpatch};
