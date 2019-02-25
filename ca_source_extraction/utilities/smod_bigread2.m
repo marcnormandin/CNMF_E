@@ -352,7 +352,7 @@ elseif strcmpi(ext,'.hdf5') || strcmpi(ext,'.h5');
     imData =squeeze( h5read(path_to_file,info.GroupHierarchy.Datasets.Name,[ones(1,length(dims)-1),sframe],[dims(1:end-1),num2read]));
     display('Finished reading images')
 elseif strcmpi(ext,'.avi')
-    obj = audiovideo.mmreader(path_to_file);
+    obj = VideoReader(path_to_file);
     
     frame_rate = obj.FrameRate;
     total = obj.Duration;

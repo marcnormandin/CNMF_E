@@ -34,7 +34,11 @@ elseif strcmpi(ext,'.hdf5') || strcmpi(ext,'.h5');
     temp = squeeze(info.GroupHierarchy.Datasets.Dims);
     dims = temp([2, 3, 5]); 
 elseif strcmpi(ext, '.avi')
-    obj = audiovideo.mmreader(path_to_file);
+    % CELIA -- mmreader phased out in 2010. Replacing with VideoReader
+    %obj = audiovideo.mmreader(path_to_file);
+    obj = VideoReader(path_to_file);
+    % ^^ end mod by Celia
+    
     
     frame_rate = obj.FrameRate;
     total = obj.Duration;

@@ -45,6 +45,7 @@ w_overlap = mat_data.w_overlap;
 idx_r = mat_data.block_idx_r;
 idx_c = mat_data.block_idx_c;
 dtype = mat_data.dtype;
+disp(dtype)
 
 % determine the smallest block that includes the batch 
 r0_patch = patch_pos(1); 
@@ -67,7 +68,25 @@ nframes = diff(frame_range)+1;
 nr_block = length(block_idx_r) - 1;
 nc_block = length(block_idx_c) - 1;
 
-Y = zeros(nr, nc, nframes, 'like', cast(0,dtype));
+disp(nr)
+disp(nc)
+disp(nframes)
+
+nr = uint16(nr);
+nc = uint16(nc);
+nframes = uint16(nframes);
+
+class(nr)
+class(nc)
+class(nframes)
+
+%nr = uint8(nr)
+%nc = uint8(nc)
+%nframes = nframes
+
+Y = zeros(nr, nc, nframes);
+%Y = zeros(nr, nc, nframes, 'like', cast(0,dtype));
+
 block_rstart = block_idx_r(1)-1;
 block_cstart = block_idx_c(1)-1;
 for m=1:nr_block
