@@ -28,17 +28,17 @@ if display_merge && ~isempty(merged_ROI)
             plot(tmp_C(mm,:), 'color', cols(col(mm), :),  'linewidth', 2);
         end
         temp = input('keep this merge? (y(default)/n(cancel)/b(back))/e(end)   ', 's');
-        if strcmpi(temp, 'n')
-            ind_after(newIDs(m)) = true;
-            ind_before(merged_ROI{m}) = true;
+        %if strcmpi(temp, 'n')
+%             ind_after(newIDs(m)) = true;
+%             ind_before(merged_ROI{m}) = true;
+%             m = m+1;
+%         elseif strcmpi(temp, 'b')
+%             m = m-1;
+%         elseif strcmpi(temp, 'e')
+%             break;
+%         else
             m = m+1;
-        elseif strcmpi(temp, 'b')
-            m = m-1;
-        elseif strcmpi(temp, 'e')
-            break;
-        else
-            m = m+1;
-        end
+        %end
     end
     
     neuron.A = [neuron.A(:, ~ind_after), neuron_bk.A(:, ind_before)];

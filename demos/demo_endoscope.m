@@ -4,13 +4,15 @@ global  d1 d2 numFrame ssub tsub sframe num2read Fs neuron neuron_ds ...
     neuron_full Ybg_weights; %#ok<NUSED> % global variables, don't change them manually
 
 %% select data and map it to the RAM
-nam = './data_1p.tif';
+%nam = './data_1p.tif';
+%nam = './msCam1_128.tiff';
+nam = './msCam1_stable_240by240_8bit.tiff'
 cnmfe_choose_data;
 
 %% create Source2D class object for storing results and parameters
-Fs = 10;             % frame rate
-ssub = 1;           % spatial downsampling factor
-tsub = 1;           % temporal downsampling factor
+Fs = 30;             % frame rate
+ssub = 2;           % spatial downsampling factor
+tsub = 2;           % temporal downsampling factor
 gSig = 3;           % width of the gaussian kernel, which can approximates the average neuron shape
 gSiz = 13;          % maximum diameter of neurons in the image plane. larger values are preferred.
 neuron_full = Sources2D('d1',d1,'d2',d2, ... % dimensions of datasets
@@ -40,7 +42,7 @@ neuron_full.options.deconv_options = struct('type', 'ar1', ... % model of the ca
     'smin', -5, ...         % minimum spike size. When the value is negative, the actual threshold is abs(smin)*noise level
     'optimize_pars', true, ...  % optimize AR coefficients
     'optimize_b', true, ...% optimize the baseline);
-    'max_tau', 100);    % maximum decay time (unit: frame);
+    'max_tau', 10);    % maximum decay time (unit: frame);
 
 %% downsample data for fast and better initialization
 sframe=1;						% user input: first frame to read (optional, default:1)
@@ -198,18 +200,18 @@ dir_neurons = sprintf('%s%s%s_neurons%s', dir_nm, filesep, file_nm, filesep);
 neuron.save_neurons(dir_neurons); 
 
 %% display contours of the neurons
-figure;
-Cnn = correlation_image(neuron.reshape(Ysignal(:, 1:5:end), 2), 4);
-neuron.show_contours(0.6); 
-colormap gray;
-axis equal; axis off;
-title('contours of estimated neurons');
+%figure;
+%Cnn = correlation_image(neuron.reshape(Ysignal(:, 1:5:end), 2), 4);
+%neuron.show_contours(0.6); 
+%colormap gray;
+%axis equal; axis off;
+%title('contours of estimated neurons');
 
 % plot contours with IDs
 % [Cn, pnr] = neuron.correlation_pnr(Y(:, round(linspace(1, T, min(T, 1000)))));
 figure;
 Cn = imresize(Cn, [d1, d2]); 
-neuron.show_contours(0.6); 
+%neuron.show_contours(0.6); 
 colormap gray;
 title('contours of estimated neurons');
 
