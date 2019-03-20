@@ -1,3 +1,5 @@
+Modified by Marc Normandin
+
 # CNMF_E
 Constrained Nonnegative Matrix Factorization for microEndoscopic data. 'E' also suggests 'extension'. It is built on top of [CNMF](https://github.com/epnev/ca_source_extraction) with supports to 1 photon data. 
 
